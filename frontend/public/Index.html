@@ -5,8 +5,89 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disaster Management System</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
 <body>
-    <div id="root"></div>
+    <header>
+        <div class="container">
+            <h1>Disaster Management System</h1>
+            <nav>
+                <ul>
+                    <li><a href="#report">Report Incident</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#volunteers">Volunteers</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <main class="container">
+        <section id="report">
+            <h2>Report an Incident</h2>
+            <form id="incident-form">
+                <input type="text" id="incident-type" placeholder="Type of Incident" required>
+                <input type="text" id="incident-location" placeholder="Location" required>
+                <textarea id="incident-description" placeholder="Description" required></textarea>
+                <button type="submit">Submit Report</button>
+            </form>
+        </section>
+        
+        <section id="resources">
+            <h2>Available Resources</h2>
+            <div id="resource-list">
+                <div class="resource-item">
+                    <h3>Medical Supplies</h3>
+                    <p>Quantity: 200</p>
+                    <p>Location: Nairobi</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Food Supplies</h3>
+                    <p>Quantity: 500</p>
+                    <p>Location: Mombasa</p>
+                </div>
+                <div class="resource-item">
+                    <h3>Water Bottles</h3>
+                    <p>Quantity: 300</p>
+                    <p>Location: Kisumu</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="volunteers">
+            <h2>Volunteer Coordination</h2>
+            <div id="volunteer-list">
+                <div class="volunteer-item">
+                    <h3>John Doe</h3>
+                    <p>Location: Nairobi</p>
+                    <p>Skills: Medical Assistance</p>
+                </div>
+                <div class="volunteer-item">
+                    <h3>Jane Smith</h3>
+                    <p>Location: Mombasa</p>
+                    <p>Skills: Logistics Coordination</p>
+                </div>
+                <div class="volunteer-item">
+                    <h3>Samuel Karanja</h3>
+                    <p>Location: Kisumu</p>
+                    <p>Skills: Search and Rescue</p>
+                </div>
+            </div>
+        </section>
+        
+        <section id="map">
+            <h2>Map View</h2>
+            <div id="map-container" style="height: 400px;"></div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Disaster Management System. All rights reserved.</p>
+        </div>
+    </footer>
+    
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <script src="src/index.js"></script>
 </body>
 </html>
