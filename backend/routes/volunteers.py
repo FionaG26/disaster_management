@@ -1,6 +1,6 @@
 from fastapi import APIRouter
-from app.models.volunteer import Volunteer
-from app.services.cassandra_service import cassandra_session
+from models.volunteer import Volunteer
+from services.cassandra_service import cassandra_session
 
 router = APIRouter()
 
