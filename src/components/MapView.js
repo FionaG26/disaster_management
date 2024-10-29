@@ -1,18 +1,23 @@
-import React, { useEffect } from "react";
-import L from "leaflet";
+import React, { useEffect } from 'react';
+import L from 'leaflet';
+import 'leaflet/dist/leaflet.css'; // Ensure you import the Leaflet CSS
 
-function MapView() {
+const MapView = () => {
     useEffect(() => {
-        const map = L.map("map").setView([-1.2921, 36.8219], 7);
+        // Initialize the map
+        const map = L.map('map-container').setView([-1.286389, 36.817223], 6); // Center on Nairobi
 
-        L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
 
-        // Fetch incidents and add markers (this can be updated with API data)
+        // Add a marker for demonstration
+        L.marker([-1.286389, 36.817223]).addTo(map).bindPopup('Nairobi').openPopup();
     }, []);
 
-    return <div id="map" style={{ height: "400px", width: "100%" }}></div>;
-}
+    return <div id="map-container" style={{ height: '400px' }}></div>; // Set a height for the map
+};
 
 export default MapView;
