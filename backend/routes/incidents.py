@@ -1,6 +1,6 @@
 from fastapi import APIRouter, HTTPException
-from app.models.incident import Incident
-from app.services.cassandra_service import cassandra_session
+from models.incident import Incident
+from services.cassandra_service import cassandra_session
 
 router = APIRouter()
 
