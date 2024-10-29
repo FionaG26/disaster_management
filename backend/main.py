@@ -1,21 +1,30 @@
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
+from routes import incidents, resources, volunteers
+from starlette.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
 import os
 
 app = FastAPI()
 
-# Set the path to the frontend/public directory
+# Include routers
+app.include_router(incidents.router, prefix="/incidents", tags=["incidents"])
+app.include_router(resources.router, prefix="/resources", tags=["resources"])
+app.include_router(volunteers.router, prefix="/volunteers", tags=["volunteers"])
+
+# Set paths to the static directories
 frontend_public_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../frontend/public')
+src_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), '../src')
 
-# Serve static files from the "frontend/public" directory
-app.mount("/static", StaticFiles(directory=frontend_public_path), name="static")
+# Serve static files from frontend/public directory
+app.mount("/public", StaticFiles(directory=frontend_public_path), name="public")
 
+# Serve the main index.html file
 @app.get("/")
-def read_root():
-    return {"message": "Welcome to the Disaster Management System!"}
+async def read_index():
+    return FileResponse(os.path.join(frontend_public_path, 'index.html'))
 
-# Import and include the routers
-from routes import incidents, resources, volunteers
-app.include_router(incidents.router, prefix="/incidents", tags=["Incidents"])
-app.include_router(resources.router, prefix="/resources", tags=["Resources"])
-app.include_router(volunteers.router, prefix="/volunteers", tags=["Volunteers"])
+# Serve JavaScript files from the src directory
+@app.get("/src/{file_name:path}")
+async def get_js(file_name: str):
+    return FileResponse(os.path.join(src_path, file_name))
+

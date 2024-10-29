@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Disaster Management System</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="/public/styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
 </head>
@@ -25,10 +25,16 @@
     <main class="container">
         <section id="report">
             <h2>Report an Incident</h2>
-            <form id="incident-form">
+            <form id="incident-form" novalidate>
+                <label for="incident-type">Type of Incident:</label>
                 <input type="text" id="incident-type" placeholder="Type of Incident" required>
+
+                <label for="incident-location">Location:</label>
                 <input type="text" id="incident-location" placeholder="Location" required>
+
+                <label for="incident-description">Description:</label>
                 <textarea id="incident-description" placeholder="Description" required></textarea>
+
                 <button type="submit">Submit Report</button>
             </form>
         </section>
@@ -91,3 +97,4 @@
     <script src="src/index.js"></script>
 </body>
 </html>
+
